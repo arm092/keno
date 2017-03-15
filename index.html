@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Marmelad|Neucha" rel="stylesheet">
+    <script src='js/jquery-min.js'></script>
+    <script src='js/main.js'></script>
+    <title>Играть в КЕНО</title>
+</head>
+
+<body>
+    <script>
+        let clientWidth = document.documentElement.clientWidth;
+        let size = 0;
+        if (clientWidth > 1370) {
+            size = 16;
+        } else if (clientWidth > 1170) {
+            size = 14;
+        } else if (clientWidth > 1024) {
+            size = 12;
+        } else if (clientWidth > 850) {
+            size = 10;
+        } else if (clientWidth > 670) {
+            size = 8;
+        } else if (clientWidth > 510) {
+            size = 6;
+        } else size = 4;
+        document.body.style.fontSize = size + 'px';
+    </script>
+    <header>
+        <div class='info'>
+            <div>
+                <div class='bold'>Коэффициенты</div><img src="images/keno-rules.jpg" id="rules">
+                                    <!--<br>0 из 10: 2
+                                    <br>5 из 10: 5
+                                    <br>6 из 10: 30
+                                    <br>7 из 10: 100
+                                    <br>8 из 10: 300
+                                    <br>9 из 10: 1000
+                                    <br>10 из 10: 5000 -->
+            </div>
+        </div>
+        <div class='welcome'>
+            <span>
+                Игра<br>"КЕНО"
+            </span>
+        </div>
+        <div class='ballance'>
+            <span>
+                <b>Ваш игровой счет</b><br>Балланс: <span id='money'>3000</span> драм
+            </span>
+            <br>
+            <br>
+            <span style="margin-bottom: 1em; display: inline-block;">
+                <b>Информация</b><br>Черный: Невыбранные 
+                                <br>Красный: Выбранные 
+                                <br>Синий: Выигрышные 
+                                <br>Зеленый: Совпавшие 
+            </span>
+            <script>
+                $(function(){
+                    $.getJSON('https://raw.githubusercontent.com/arm092/new-xo/master/gamer-ballance.json', function(data) {
+                        $('#money').html(data.gamer1);
+                    });
+                });
+            </script>
+        </div>
+    </header>
+    <div class="main">
+        <div id='new-game'>
+            <span class='text'>Сыграем?</span>
+            <div class='button' id='start-game'>Новая игра</div>
+        </div>
+        
+        <div id='betting'>
+            <div class='text'>Ваша ставка:</div>
+            <input type='number' min='100' step='50' value='100' class='button' id='bet'>
+            <span class='text'> драм</span>
+            <div class='button' id='make-bet'>Сделать ставку</div>
+            <script>
+                document.getElementById('bet').setAttribute('max', document.getElementById('money').innerHTML);
+            </script>
+        </div>
+        <div id="game">
+            <span id='game-text'></span>
+            <div id='table-box'>
+                <table id='game-field'>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class='button' id='start'>Старт</div>
+                <div class='button' id='clean'>Очистить</div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <div>Powered by ArmArt CI Studio</div>
+    </footer>
+</body>
+
+</html>
